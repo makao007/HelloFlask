@@ -1,0 +1,14 @@
+
+pip install Flask
+pip install sqlalchemy
+pip install flask-sqlalchemy
+pip install Flask-Mail   # send EMail
+
+mysql :
+mysql.server start
+mysql.server stop
+
+
+需要执行脚本来创建表
+src/scripts/system_init.py
+

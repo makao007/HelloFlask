@@ -1,0 +1,62 @@
+{% extends "admin/dashboard_nav.html" %}
+
+{% block main %}
+  <h2 class="sub-header">分类管理
+  </h2>
+  <div>
+    <form class="form-horizontal" role="form" method="post" action="">
+        
+        {% for msg in get_flashed_messages() %}
+          <div class="form-group" style="background-color: #E47272; color: #FFF;">
+            <label class="col-sm-1 control-label">出错</label>
+            <div class="col-sm-11">
+                <p style="padding-top:7px;">{{msg}}</p>
+            </div>
+          </div>
+        {% endfor %}
+        
+      <div class="form-group">
+        <label class="col-sm-1 control-label">名称</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" name="cname" placeholder="显示类别" required="required" value="{{record.name or ''}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">链接</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" name="cslot" placeholder="方便生成网址" required="required" value="{{record.slot or ''}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">顺序</label>
+        <div class="col-sm-11">
+          <input type="number" class="form-control" name="cord" placeholder="显示顺序" required="required" min="1" value="{{record.ord or '' }}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">描述</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" name="cremark" placeholder="简单说明" value="{{record.desc or ''}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="flag" value="0" {% if record.flag==0 %} checked="checked" {% endif %}>不显示
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">保存</button>
+          &nbsp;&nbsp;
+          <a class="btn btn-default" href="javascript:history.go(-1);">返回</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+{% endblock %}
+

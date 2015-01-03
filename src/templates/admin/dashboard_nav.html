@@ -1,0 +1,29 @@
+{% extends "admin/layout.html" %}
+
+{% block nav_sub %}
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="category"><a href="/admin/category">分类管理</a></li>
+        <li class="article"><a href="/admin/article">文章管理</a></li>
+      </ul>
+ 
+    </div>
+{% endblock %}
+
+{% block body_js %}
+<script>
+    $().ready(function () {
+        var url = location.pathname;
+        var tmp = url.split("/");
+        if (tmp.length >=3) {
+            var temp = "ul li." + tmp[2];
+            //console.log (temp);
+            $(temp).addClass('active');
+        }
+    });
+</script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,11 @@
+
+
+Language:  Python
+Framework: Flask
+DB:        MySQL
+DB adapt:  SQLAlchemy
+Cache:     Radis
+Template:  Jinja2
+
+
+

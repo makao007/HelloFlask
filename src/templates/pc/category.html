@@ -1,0 +1,32 @@
+{% extends "pc/layout.html" %}
+
+{% block nav %}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">{{site.site_name}}</a>
+          <a class="navbar-brand" href="/c/{{category.slot}}"><small>{{category.name}}</small></a>
+        </div>
+      </div>
+    </nav>
+{% endblock %}
+
+{% block main %} 
+    <br/><br/><br/>
+    <div class="row">
+    {% for post in posts %}
+        {% if loop.index0>0 and loop.index0 % 3== 0 %}
+            </div>
+            <div class="row">
+        {% endif %}
+        <div class="col-md-4">
+            <div class="thumbnail" style="padding: 5px 10px;">
+                <h3><a href="/d/{{post.id}}" >{{post.title}}</a></h3>
+                <p>{{post.body}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>   
+{% endblock %}
+
+

@@ -1,0 +1,29 @@
+{% extends "admin/layout.html" %}
+
+{% block nav_sub %}
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="setting"><a href="/admin/setting">网站配置</a></li>
+        <li class="adminpw"><a href="/admin/adminpw">修改密码</a></li>
+      </ul>
+
+
+    </div>
+{% endblock %}
+
+{% block body_js %}
+<script>
+    $().ready(function () {
+        var url = location.pathname;
+        var tmp = url.split("/");
+        if (tmp.length >=3) {
+            var temp = "ul li." + tmp[2];
+            $(temp).addClass('active');
+        }
+    });
+</script>
+
+{% endblock %}
+
+
+

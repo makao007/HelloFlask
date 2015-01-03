@@ -1,0 +1,80 @@
+Flask Note
+
+Flask : A Python Web Framework
+
+
+
+---------hello.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+----------
+pip install Flask
+$ python hello.py
+----------
+
+==============================================
+修改了python代码，不需要重启进程，保存会自动reload
+如果url重复，则使用第一个
+如果函数重复，报错
+
+
+=================
+request.path
+request.method
+request.form['username']     #just POST
+request.args.get('key', '')  #GET POST
+username = request.cookies.get('username')
+
+=================
+@app.before_request
+def before_request():
+    g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
+==================
+
+favicon.ico
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+app.add_url_rule('/favicon.ico',
+                 redirect_to=url_for('static', filename='favicon.ico'))
+                 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+===================
+app = Flask(__name__)
+#dialect+driver://username:password@host:port/database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@server/db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost/mydatabase'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'oracle://username:password@127.0.0.1:1521/sidname'
+db = SQLAlchemy(app)
+====================
+
+Jinja2 
+template, extends, 可能用super来继承上一个block
+{% block body_js %}
+{{super()}}
+<script> console.log ("hello")  </script>
+{% endblock %}
+
+====================
+session
+session['username'] = 'michael'
+session.get ('username')
+session.pop ('username')
+session.clear()  # clean all the session
+====================
