@@ -183,7 +183,7 @@ def admin_article(length=0, index=1):
     amount= db_Post.query.count()
     categories = db_Category.query.filter_by(flag=1).order_by('ord')
     categories_dict = common.list_to_dict (categories, 'id', 'name')
-    pagination = common.pagination(index, int(math.ceil(float(amount)/length)), length, common_flask.pagination_url, common_flask.pagination_jump)
+    pagination = common.pagination(index, amount, length, common_flask.pagination_url, common_flask.pagination_jump)
     return render_template('admin/article.html', records = posts, categories=categories, categories_dict=categories_dict, pagination=pagination)
 
 @app.route('/admin/article/edit/<int:xid>', methods=['POST', 'GET'])

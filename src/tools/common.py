@@ -1,5 +1,7 @@
 #encoding:utf8
 
+import math
+
 def list_to_dict (data, k, v):
     # convert a list to dict
     tmp = {}
@@ -9,7 +11,8 @@ def list_to_dict (data, k, v):
         tmp[kk] = vv
     return tmp
 
-def pagination (cur_page, max_page, length, make_url, make_jump):
+def pagination (cur_page, amount, length, make_url, make_jump):
+    max_page = int(math.ceil(float(amount)/length))
     # 分页, 前端CSS用Bootstrap
     temp = """<div><ul class="pagination">"""
     
@@ -26,7 +29,7 @@ def pagination (cur_page, max_page, length, make_url, make_jump):
     else:
         temp += '%s' + '<li><a href="%s">&raquo;</a></li>' % (make_url(length, cur_page+1))
         temp += '<li><a href="%s">尾页</a></li>' % (make_url(length, max_page))
-    temp += "</ul>%s</div>" % make_jump(length, cur_page, max_page* length)
+    temp += "</ul>%s</div>" % make_jump(length, cur_page, amount)
     
     if max_page < 10:
         start = 1
